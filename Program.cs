@@ -10,7 +10,6 @@ namespace Assignment
     {
         static void Main(string[] args)
         {
-            // You can call individual methods here to test each question.
              SolveQuestion01();
              SolveQuestion02();
              SolveQuestion03();
@@ -25,15 +24,13 @@ namespace Assignment
          * Every time the code does `productList += ...`, the runtime doesn't just append to the existing string. 
          * Instead, it creates an entirely new string object in the Managed Heap, copies the old content, 
          * appends the new content, and then abandons the old object for Garbage Collection.
-         * Doing this 5,000 times creates 5,000 temporary string objects, causing massive memory pressure 
-         * and slowing down performance significantly due to repeated allocations and data copying.
          */
         static void SolveQuestion01()
         {
             const int iterations = 5000;
             Stopwatch sw = new Stopwatch();
 
-            // Version 1: Inefficient String Concatenation
+           
             sw.Start();
             string productList = "";
             for (int i = 1; i <= iterations; i++)
@@ -44,7 +41,6 @@ namespace Assignment
             long slowTime = sw.ElapsedMilliseconds;
             Console.WriteLine($"String Concatenation Time: {slowTime}ms");
 
-            // Version 2: Efficient StringBuilder
             sw.Restart();
             StringBuilder sb = new StringBuilder();
             for (int i = 1; i <= iterations; i++)
@@ -77,7 +73,6 @@ namespace Assignment
             double basePrice = 0;
             string breakdown = "";
 
-            // (a) Base Price using if-else if-else
             if (age < 5)
             {
                 basePrice = 0;
@@ -101,14 +96,12 @@ namespace Assignment
 
             double finalPrice = basePrice;
 
-            // Weekend Surcharge
             if (basePrice > 0 && (day == 6 || day == 7))
             {
                 finalPrice += 10;
                 breakdown += "\nWeekend Surcharge: +10 LE";
             }
 
-            // Student Discount
             if (basePrice > 0 && isStudent)
             {
                 double discount = finalPrice * 0.20;
@@ -128,7 +121,6 @@ namespace Assignment
             string fileExtension = ".pdf";
             string fileType;
 
-            // (a) Traditional Switch Statement
             switch (fileExtension)
             {
                 case ".pdf":
@@ -152,7 +144,6 @@ namespace Assignment
                     break;
             }
 
-            // (b) Switch Expression (C# 8.0+)
             string fileTypeExpr = fileExtension switch
             {
                 ".pdf" => "PDF Document",
@@ -169,7 +160,6 @@ namespace Assignment
         {
             int temperature = 35;
 
-            // Ternary Version
             string weatherAdvice = (temperature < 0) ? "Freezing! Stay indoors."
                                  : (temperature < 15) ? "Cold. Wear a jacket."
                                  : (temperature < 25) ? "Pleasant weather."
@@ -247,7 +237,6 @@ namespace Assignment
         {
             int[] scores = { 85, 42, 91, 67, 55, 78, 39, 88, 72, 95, 60, 48 };
 
-            // (a) Failing scores
             Console.WriteLine("Failing Scores (< 50):");
             foreach (int s in scores)
             {
@@ -255,7 +244,6 @@ namespace Assignment
             }
             Console.WriteLine();
 
-            // (b) First score above 90
             foreach (int s in scores)
             {
                 if (s > 90)
@@ -265,7 +253,7 @@ namespace Assignment
                 }
             }
 
-            // (c) Class average (excluding < 40)
+            
             double sum = 0;
             int count = 0;
             foreach (int s in scores)
@@ -279,7 +267,6 @@ namespace Assignment
             double average = (count > 0) ? sum / count : 0;
             Console.WriteLine($"Class average (excluding absent students): {average:F2}");
 
-            // (d) Grade counts
             int a = 0, b = 0, c = 0, d = 0, f = 0;
             foreach (int s in scores)
             {
